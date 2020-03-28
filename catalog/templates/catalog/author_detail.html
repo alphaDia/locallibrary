@@ -1,0 +1,35 @@
+{% extends "base_generic.html" %} {% block title %}
+<title>{{ author|title }}</title>
+{% endblock title %} {% block content %}
+<p class="h1">{{ author|title }}</p>
+<ul>
+  <li class="m-2">
+    <span style="font-weight: 900;">first name: </span>
+    {{ author.first_name|capfirst }} {{ author.last_name|capfirst }}
+  </li>
+  <li class="m-2">
+    <span style="font-weight: 900;">Date of birth: </span>
+    {{ author.date_of_birth|date:"M d Y" }}
+  </li>
+  {% if author.date_of_death %}
+  <li class="m-2">
+    <span style="font-weight: 900;">Date of death:</span> {{
+    author.date_of_death|date:"M d Y" }}
+  </li>
+  {% endif %}
+  <p class="h1">Books wrote by {{ author.first_name }} {{ author.last_name}}</p>
+  {% for author_book in author.book_set.all %}
+  <div class="row">
+    <ul class="list-group col-sm-4">
+      <li class="list-group-item">title: {{ author_book.title }}</li>
+      <li class="list-group-item">laguage: {{ author_book.language }}</li>
+      <li class="list-group-item">isbn: {{ author_book.isbn }}</li>
+    </ul>
+  </div>
+  {% endfor %}
+  <p class="mt-4">
+    Total book{{ author.book_set.all|pluralize }}
+    <span class="badge badge-primary">{{ author.book_set.all.count}}</span>
+  </p>
+</ul>
+{% endblock content %}

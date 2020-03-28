@@ -1,0 +1,9 @@
+.sidebar-nav {
+  margin-top: 20px;
+  list-style: none;
+  padding: 0;
+}
+
+ul li {
+  list-style: none;
+}

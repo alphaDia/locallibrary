@@ -1,0 +1,34 @@
+{% extends 'base_generic.html' %}
+
+{% block title %}
+    {% if user.is_authenticated %}
+        <title>{{user.username|upper}}</title>
+    {% endif %}
+{% endblock title %}
+
+{% block content %}
+
+    <h1 class="h1">Borrowed books</h1>
+    {% if user.is_authenticated %}
+        
+        {% if perms.catalog.can_mark_returned  %}
+            
+            {% if bookinstance_list %}
+                <ul>
+                    {% for book in bookinstance_list %}
+                    <li>
+                        {{ book.book.title }} - <span class="{% if book.is_overdue %} text-danger {% endif %}"> {{ book.due_back }}</span>-
+                        {{ book.borrower.username }}
+                    </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>no borrowed books</p>
+            {% endif %}
+    
+        {% endif %}
+            
+    {% endif %}
+        
+  
+{% endblock content %}

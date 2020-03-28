@@ -1,0 +1,37 @@
+{% extends "base_generic.html" %} {% block title %}
+<title>{{ title|upper }}</title> {% endblock title %} {% block content %}
+<h1>Local Library Home</h1>
+<p>
+  Welcome to LocalLibrary, a website developed by
+  <em>Mozilla Developer Network</em>!
+</p>
+<h2>Dynamic content</h2>
+<p>The library has the following record counts:</p>
+<ul>
+  <li>
+    <strong>Books:</strong>
+    <span class="badge badge-primary">{{ number_books }}</span>
+  </li>
+  <li>
+    <strong>Copies:</strong>
+    <span class="badge badge-primary">{{ number_instances }}</span>
+  </li>
+  <li>
+    <strong>Copies available:</strong>
+    <span class="badge badge-primary">{{ number_instances_available }}</span>
+  </li>
+  <li>
+    <strong>Authors:</strong>
+    <span class="badge badge-primary">{{ number_authors }}</span>
+  </li>
+  <li>
+    <strong>Genres:</strong>
+    <span class="badge badge-primary">{{ number_genres }}</span>
+  </li>
+</ul>
+
+<p>
+  You have visited this page {{ visits }} {% if visits > 1 %} times {% else %}
+  time {% endif %}
+</p>
+{% endblock %}
